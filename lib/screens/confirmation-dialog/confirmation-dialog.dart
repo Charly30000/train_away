@@ -22,41 +22,40 @@ class ConfirmationDialog extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(
-              padding: const EdgeInsetsGeometry.only(top: 10),
+          Container(
+            decoration: BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(color: Colors.black, width: 1)
+                )
+            ),
+            child: Padding(
+                padding: const EdgeInsetsGeometry.symmetric(horizontal: 40, vertical: 24),
                 child: Column(
-                  children: [
-                    Container(
-                        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-                        decoration: BoxDecoration(
-                            border: Border(
-                                bottom: BorderSide(color: Colors.black, width: 1)
-                            )
-                        ),
-                        child: Column(
-                          spacing: 12,
-                          children: [
-                            Text(title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                            Text(message, textAlign:TextAlign.center)
-                          ],
+                    children: [
+                      Column(
+                        spacing: 12,
+                        children: [
+                          Text(title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                          Text(message, textAlign:TextAlign.center, style: TextStyle(fontSize: 13))
+                        ],
+                      ),
+                    ]
+                )
+            ),
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                    decoration: BoxDecoration(
+                        border: Border(
+                            right: BorderSide(color: Colors.black, width: 1)
                         )
                     ),
-                    Row(
-                      children: [
-                        Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  right: BorderSide(color: Colors.black, width: 1)
-                                )
-                              ),
-                              child: TextButton(onPressed: () => _closeConfirmationDialog(context), child: Text('No', style: TextStyle(fontWeight: FontWeight.bold)))),
-                            ),
-                        Expanded(child: TextButton(onPressed: () => _closeConfirmationDialog(context), child: Text('Si', style: TextStyle(fontWeight: FontWeight.bold))))
-                      ],
-                    )
-                  ]
-              )
+                    child: TextButton(onPressed: () => _closeConfirmationDialog(context), child: Text('No', style: TextStyle(fontWeight: FontWeight.bold)))),
+              ),
+              Expanded(child: TextButton(onPressed: () => _closeConfirmationDialog(context), child: Text('Si', style: TextStyle(fontWeight: FontWeight.bold))))
+            ],
           )
         ],
       ),

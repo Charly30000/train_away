@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:train_away/constants/constants.dart';
 import 'package:train_away/screens/confirmation-dialog/confirmation-dialog.dart';
 import 'package:train_away/screens/confirmacion_reserva/widgets/dato_reserva.dart';
-import 'package:train_away/widgets/boton_intefrior.dart';
+import 'package:train_away/widgets/boton_inferior.dart';
 import 'package:train_away/widgets/header.dart';
 
 class ConfirmacionReserva extends StatelessWidget {

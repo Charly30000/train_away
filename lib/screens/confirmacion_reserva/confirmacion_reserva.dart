@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:train_away/constants/constants.dart';
+import 'package:train_away/screens/confirmation-dialog/confirmation-dialog.dart';
 import 'package:train_away/screens/confirmacion_reserva/widgets/dato_reserva.dart';
 import 'package:train_away/widgets/boton_intefrior.dart';
 import 'package:train_away/widgets/header.dart';
@@ -23,8 +24,22 @@ class ConfirmacionReserva extends StatelessWidget {
 
   final int fechaHoraViajeMs;
 
-  void _confirmarReserva() {
-    // TODO: Implementar la confirmación de la reserva.
+  Future<void> _confirmarReserva(BuildContext context) async {
+    final confirmado = await showDialog<bool>(
+      context: context,
+      builder: (context) => const ConfirmationDialog(
+        title: 'Confirmar reserva',
+        message: '¿Quieres confirmar la reserva de tu viaje?',
+      ),
+    );
+
+    if (confirmado == true) {
+      _realizarReserva();
+    }
+  }
+
+  void _realizarReserva() {
+    // TODO: Implementar la logica para realizar la reserva del viaje.
   }
 
   String _formatearFecha(DateTime fecha) {
@@ -77,7 +92,7 @@ class ConfirmacionReserva extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
               child: BotonInferior(
                 texto: 'Confirmar',
-                onPressed: _confirmarReserva,
+                onPressed: () => _confirmarReserva(context),
               ),
             ),
           ],

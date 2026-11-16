@@ -17,3 +17,14 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: DMSans
+      fonts:
+        - asset: lib/screens/fecha_reserva/tipografia/DMSans-Medium.ttf
+          weight: 500
+        - asset: lib/screens/fecha_reserva/tipografia/DMSans-Bold.ttf
+          weight: 700
+    - family: Corinthia
+      fonts:
+        - asset: lib/screens/fecha_reserva/tipografia/Corinthia-Bold.ttf
+          weight: 700

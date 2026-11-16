@@ -24,22 +24,26 @@ class ConfirmacionReserva extends StatelessWidget {
 
   final int fechaHoraViajeMs;
 
-  Future<void> _confirmarReserva(BuildContext context) async {
+  Future<void> _showConfirmationDialog(BuildContext context) async {
     final confirmado = await showDialog<bool>(
-      context: context,
-      builder: (context) => const ConfirmationDialog(
-        title: 'Confirmar reserva',
-        message: '¿Quieres confirmar la reserva de tu viaje?',
-      ),
+        context: context,
+        builder: (context) =>
+        const ConfirmationDialog(
+            title: 'Vas a confirmar tu reserva',
+            message: 'Una vez confirmada no podrá ser anulada. ¿Confirmas la reserva?'
+        )
     );
-
     if (confirmado == true) {
-      _realizarReserva();
+      _realizarReserva(context);
     }
   }
 
-  void _realizarReserva() {
-    // TODO: Implementar la logica para realizar la reserva del viaje.
+  void _realizarReserva(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const OtraVista(),
+      ),
+    );
   }
 
   String _formatearFecha(DateTime fecha) {
@@ -92,7 +96,7 @@ class ConfirmacionReserva extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
               child: BotonInferior(
                 texto: 'Confirmar',
-                onPressed: () => _confirmarReserva(context),
+                onPressed: () => _showConfirmationDialog(context),
               ),
             ),
           ],

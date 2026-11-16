@@ -1,19 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:train_away/screens/confirmation-dialog/confirmation-dialog.dart';
+import 'package:train_away/screens/confirmacion_reserva/confirmacion_reserva.dart';
 
 void main() {
   runApp(const MainApp());
-}
-
-void _showConfirmationDialog(BuildContext context) {
-  showDialog(
-      context: context,
-      builder: (context) =>
-      const ConfirmationDialog(
-          title: 'Vas a confirmar tu reserva',
-          message: 'Una vez confirmada no podrá ser anulada. ¿Confirmas la reserva?'
-      )
-  );
 }
 
 class MainApp extends StatelessWidget {
@@ -22,28 +11,19 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomeScreen()
+      home: ConfirmacionReserva(
+        origen: 'Estación norte de Madrid',
+        destino: 'Estación sur de Barcelona',
+        numeroPasajeros: 1,
+        categoria: '1ª clase',
+        opcionesViaje: [
+          'Sin equipaje',
+          'Con servicio restaurante',
+          'Coche cama',
+        ],
+        fechaHoraViajeMs: DateTime(2026, 11, 20, 9, 30).millisecondsSinceEpoch,
+      ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Hello World!'),
-              FilledButton(onPressed: () => _showConfirmationDialog(context), child: Text('Mostrar modal'))
-            ],
-          ),
-        ),
-        backgroundColor: Colors.amber
-      );
-    }
-}
-

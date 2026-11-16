@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class ReservaConfirmadaScreen extends StatelessWidget {
   const ReservaConfirmadaScreen({
     super.key,
-    this.fecha = '20 nov 2026',
-    this.hora = '09:30',
     this.onFinish,
 
     required this.origen,
     required this.destino,
     required this.pasajeros,
+    required this.fecha,
+    required this.hora,
     required this.categoria,
     required this.opcionesViaje,
   });

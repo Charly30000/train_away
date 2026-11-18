@@ -2,6 +2,7 @@ import 'dart:ui' show PointMode;
 
 import 'package:flutter/material.dart';
 import 'package:train_away/screens/fecha_reserva/elementos_fecha_reserva.dart';
+import 'package:train_away/widgets/header.dart';
 
 const _azul = Color(0xFF2A4252);
 const _secundario = Color(0xFF586D79);
@@ -122,13 +123,13 @@ class _FechaReservaScreenState extends State<FechaReservaScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: barraFechaReserva,
+      appBar: const Header(),
       body: SafeArea(
         bottom: false,
         child: SingleChildScrollView(
           child: Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 720),
+              constraints: const BoxConstraints(maxWidth: 1100),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(15, 30, 15, 20),
                 child: Column(

@@ -47,6 +47,11 @@ void main() {
     }
 
     expect(find.byType(Header), findsOneWidget);
+    final cabecera = tester.widget<Header>(find.byType(Header));
+    expect(cabecera.estiloTitulo, isNull);
+    expect(cabecera.iconoMenu, isNull);
+    expect(cabecera.fondo, isNull);
+    expect(cabecera.espacioTitulo, 20);
     expect(find.byType(BotonInferior), findsOneWidget);
     expect(find.text('Madrid → Barcelona'), findsOneWidget);
     expect(find.text('Noviembre 2026'), findsOneWidget);
@@ -159,7 +164,7 @@ void main() {
     expect(tester.getSize(find.byType(Header)).width, 1280);
     expect(tester.getSize(find.byType(PieFechaReserva)).width, 1280);
     final titulo = tester.getRect(find.text('Fecha de salida'));
-    expect(titulo.width, 690);
+    expect(titulo.width, 1070);
     expect(titulo.center.dx, 640);
 
     await tester.tap(find.text('20'));

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:train_away/constants/constants.dart';
-import 'package:train_away/screens/reserva_confirmada_screen.dart';
-import 'package:train_away/screens/confirmation-dialog/confirmation-dialog.dart';
 import 'package:train_away/screens/confirmacion_reserva/widgets/dato_reserva.dart';
+import 'package:train_away/screens/confirmation-dialog/confirmation-dialog.dart';
+import 'package:train_away/screens/reserva_confirmada/reserva_confirmada_screen.dart';
+import 'package:train_away/utils/dates.dart';
 import 'package:train_away/widgets/boton_inferior.dart';
 import 'package:train_away/widgets/header.dart';
-import 'package:train_away/utils/dates.dart';
 
 class ConfirmacionReserva extends StatelessWidget {
   const ConfirmacionReserva({
@@ -23,34 +23,34 @@ class ConfirmacionReserva extends StatelessWidget {
   final int numeroPasajeros;
   final String categoria;
   final List<String> opcionesViaje;
-
   final int fechaHoraViajeMs;
 
-  Future<void> _showConfirmationDialog(BuildContext context) async {
+  Future<void> _mostrarDialogoConfirmacion(BuildContext context) async {
     final confirmado = await showDialog<bool>(
-        context: context,
-        builder: (context) =>
-        const ConfirmationDialog(
-            title: 'Vas a confirmar tu reserva',
-            message: 'Una vez confirmada no podrá ser anulada. ¿Confirmas la reserva?'
-        )
+      context: context,
+      builder: (context) => const ConfirmationDialog(
+        title: 'Vas a confirmar tu reserva',
+        message:
+            'Una vez confirmada no podrá ser anulada. ¿Confirmas la reserva?',
+      ),
     );
-    if (confirmado == true) {
-      _showBookingDetail(context);
+
+    if (confirmado == true && context.mounted) {
+      _mostrarDetalleReserva(context);
     }
   }
 
-  void _showBookingDetail(BuildContext context) {
+  void _mostrarDetalleReserva(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => ReservaConfirmadaScreen(
-        origen: this.origen,
-        destino: this.destino,
-          pasajeros: this.numeroPasajeros,
-        categoria: this.categoria,
-        opcionesViaje: this.opcionesViaje,
-          hora: getHours(this.fechaHoraViajeMs),
-          fecha: getDate(this.fechaHoraViajeMs),
+          origen: origen,
+          destino: destino,
+          pasajeros: numeroPasajeros,
+          categoria: categoria,
+          opcionesViaje: opcionesViaje,
+          hora: getHours(fechaHoraViajeMs),
+          fecha: getDate(fechaHoraViajeMs),
         ),
       ),
     );
@@ -106,7 +106,7 @@ class ConfirmacionReserva extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
               child: BotonInferior(
                 texto: 'Confirmar',
-                onPressed: () => _showConfirmationDialog(context),
+                onPressed: () => _mostrarDialogoConfirmacion(context),
               ),
             ),
           ],
